@@ -55,8 +55,10 @@ if st.button("🔁 Translate"):
             st.session_state.translated_text = translated
             st.success(f"Translated Text: {translated}")
 
-# 🔊 Speak translation - now outside the "Translate" button
+# 🔊 Speak translation
 if st.session_state.translated_text:
     if st.button("🔊 Speak Translation"):
-        speak_text(st.session_state.translated_text)
+        audio_file = speak_text(st.session_state.translated_text, tgt_lang)
+        st.audio(audio_file, format='audio/mp3')
+
 
