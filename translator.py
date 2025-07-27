@@ -1,7 +1,6 @@
-# translator.py
-import pyttsx3
 from googletrans import Translator
 import speech_recognition as sr
+from gtts import gTTS
 
 def translate_text(text, dest_lang, src_lang='auto'):
     translator = Translator()
@@ -23,15 +22,9 @@ def recognize_speech():
     except sr.RequestError as e:
         return f"Could not request results; {e}"
 
-def speak_text(text):
-    engine = pyttsx3.init()
-    
-    # Optional: Configure voice settings
-    engine.setProperty('rate', 150)     # Speed
-    engine.setProperty('volume', 1.0)   # Max volume
+def speak_text(text, lang_code="en"):
+    tts = gTTS(text=text, lang=lang_code)
+    filename = "output.mp3"
+    tts.save(filename)
+    return filename
 
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[0].id)  # Change to voices[1].id for female voice on some systems
-
-    engine.say(text)
-    engine.runAndWait()
