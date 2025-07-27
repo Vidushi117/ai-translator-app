@@ -2,3 +2,4 @@ streamlit
 googletrans==4.0.0-rc1
 SpeechRecognition
 gtts
+httpx==0.23.0
