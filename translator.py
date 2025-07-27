@@ -1,11 +1,10 @@
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 import speech_recognition as sr
 from gtts import gTTS
 
 def translate_text(text, dest_lang, src_lang='auto'):
-    translator = Translator()
-    translated = translator.translate(text, src=src_lang, dest=dest_lang)
-    return translated.text
+    result = GoogleTranslator(source=src_lang, target=dest_lang).translate(text)
+    return result
 
 def recognize_speech():
     recognizer = sr.Recognizer()
@@ -27,4 +26,3 @@ def speak_text(text, lang_code="en"):
     filename = "output.mp3"
     tts.save(filename)
     return filename
-
